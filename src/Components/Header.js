@@ -1,8 +1,8 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export default function Header(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.appname}
@@ -32,17 +32,30 @@ export default function Header(props) {
             </li>
           </ul>
         </div>
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+            onClick={props.toggleMode}
+          />
+          <label className={`form-check-label text-${props.mode==='light'?'dark':'light'}`} htmlFor="flexSwitchCheckDefault">
+            Dark Mode
+          </label>
+        </div>
       </div>
     </nav>
   );
 }
 
 Header.propTypes = {
-  appname: PropTypes.string
-}
+  appname: PropTypes.string,
+  home: PropTypes.string,
+  about: PropTypes.string,
+};
 
 Header.defaultProps = {
-  appname: 'App Name Here',
-  home: 'title here',
-  about: 'about here'
-}
+  appname: "App Name Here",
+  home: "Home",
+  about: "About",
+};
