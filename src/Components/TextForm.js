@@ -1,27 +1,35 @@
 import React,{useState} from "react";
+// import Alert from "./Alert";
 export default function TextForm(props) {
     const [text,setText] = useState("");
     const handleUpClick = () =>{
         let upperText = text.toUpperCase();
         setText(upperText)
+        props.showAlert("Converted To UpperCase!","success");
     }
     const handleLoClick = ()=>{
         let lowerText = text.toLowerCase();
         setText(lowerText)
+        props.showAlert("Converted To LowerCase!","success");
     }
     const handleClearClick = ()=>{
         let clear = '';
         setText(clear)
+        props.showAlert("Text Cleared!","success");
+
     }
     const handleExtraSpaces = ()=>{
         let spaces = text.split(/[ ]+/);
         setText(spaces.join(" "))
+        props.showAlert("Extra Spaces Removed!","success");
+
     }
     const handleCopy = ()=>{
         var copy = document.getElementById("textbox");
         copy.select();
         navigator.clipboard.writeText(copy.value);
-        // setText(clear)
+        props.showAlert("Text is now on the Clipboard!","success");
+
     }
     // const handleDarkMode = () =>{
 
